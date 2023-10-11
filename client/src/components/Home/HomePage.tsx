@@ -1,20 +1,9 @@
-import Search from "../Search/Search";
-import NavBar from "../Navigation/NavBar";
-
+import LocalBrews from "../LocalBrews/LocalBrews";
 
 function HomePage() {
-
 	return (
 		<>
-		<NavBar />
-			<div className="container mt-5">
-				
-				<div className="row d-flex justify-content-center mb-4">
-
-					<Search />
-					
-				</div>
-			</div>
+			<LocalBrews />
 		</>
 	);
 }
