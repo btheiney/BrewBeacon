@@ -1,36 +1,43 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
+import { useState, useEffect } from "react";
 
-function ByCity() {
-	const { city } = useParams();
-	const [cityData, setCityData] = useState([]);
+function LocalBrews() {
+	const [localData, setLocalData] = useState([]);
+	const [postalCode, setPostalCode] = useState("Bethlehem");
 
-	const fetchData = async () => {
+	const checkLocation = async () => {
+		if ("geolocation" in navigator) {
+			console.log("Available");
+		} else {
+			console.log("Not Available");
+		}
+	};
+
+	const getLocalBrews = async () => {
 		try {
 			const response = await axios.get(
-				`https://api.openbrewerydb.org/v1/breweries?by_city=${city}`
+				`https://api.openbrewerydb.org/v1/breweries?by_city=${postalCode}&per_page=4`
 			);
-			console.log(response.data);
-			setCityData(response.data);
+			setLocalData(response.data);
 		} catch (error) {
-			console.error("Error fetching data:", error);
+			console.log(error);
 		}
 	};
 
 	useEffect(() => {
-		fetchData();
+		checkLocation();
+		getLocalBrews();
 	}, []);
 
 	return (
 		<>
 			<div className="col-md-12 mt-4">
 				<span className="heading-title">
-					Breweries In {city} ({cityData.length})
+					Breweries Nearby ({localData.length})
 				</span>
 				<div className="row">
-					{cityData.map((brewery, index) => (
+					{localData.map((brewery, index) => (
 						<div key={index} className="col-3 mb-4">
 							<div className="card">
 								<img
@@ -67,4 +74,4 @@ function ByCity() {
 	);
 }
 
-export default ByCity;
+export default LocalBrews;

@@ -62,10 +62,6 @@ function ByState() {
 						</div>
 					))}
 				</div>
-				<span className="heading-sub text-muted float-end">
-					Data collected from the{" "}
-					<a href="https://www.openbrewerydb.org/">Open Brew DB</a>
-				</span>
 			</div>
 		</>
 	);

@@ -13,17 +13,19 @@ function App() {
 		<Router>
 			<NavBar />
 			<div className="container mt-5">
-				<Search />
+				<div className="row justify-content-center">
+					<Search />
 
-				<Routes>
-					<Route path="/" Component={HomePage} />
-					<Route path="/search">
-						<Route path="state/:state" element={<ByState />} />
-						<Route path="city/:city" element={<ByCity />} />
-						<Route path="postal/:postal" element={<ByPostal />} />
-						<Route path="*" element={<HomePage />} />
-					</Route>
-				</Routes>
+					<Routes>
+						<Route path="/" Component={HomePage} />
+						<Route path="/search">
+							<Route path="state/:state" element={<ByState />} />
+							<Route path="city/:city" element={<ByCity />} />
+							<Route path="postal/:postal" element={<ByPostal />} />
+							<Route path="*" element={<HomePage />} />
+						</Route>
+					</Routes>
+				</div>
 			</div>
 		</Router>
 	);

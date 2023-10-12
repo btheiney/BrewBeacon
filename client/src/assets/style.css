@@ -24,7 +24,7 @@ body {
 .heading-sub {
 	display: inline;
 	font-weight: 600;
-	font-size: .7rem;
+	font-size: 0.7rem;
 	padding: 0.5em 0.75em;
 	line-height: 1;
 	border-radius: 6px;
@@ -55,54 +55,51 @@ body {
 	border-color: #eee;
 }
 
-
-
-
 .navbar {
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-card-image img {
-	border-radius: 6px 6px 0 0;
-  }
-  
-  .card-image:hover {
+.card-image:hover {
 	transform: scale(0.98);
-  }
-  
-  .location-name {
+}
+
+.location-name {
 	text-transform: uppercase;
 	font-size: 1em;
 	font-weight: 600;
 	color: rgb(63, 121, 230);
 	padding: 10px 7px 0;
-  }
-  
-  .location-name:hover {
+}
+
+.location-name:hover {
 	cursor: pointer;
-  }
-  
-  .heading {
+}
+
+.heading {
 	font-weight: 600;
 	color: rgb(88, 87, 87);
 	padding: 7px;
-  }
-  
-  .heading:hover {
+}
+
+.heading:hover {
 	cursor: pointer;
-  }
-  
-  .author {
+}
+
+.author {
 	color: gray;
 	font-weight: 400;
 	font-size: 11px;
 	padding-top: 20px;
-  }
-  
-  .name {
+}
+
+.name {
 	font-weight: 600;
-  }
-  
-  .name:hover {
+}
+
+.name:hover {
 	cursor: pointer;
-  }
+}
+
+.modal {
+	backdrop-filter: blur(10px);
+}

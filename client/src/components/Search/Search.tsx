@@ -3,9 +3,19 @@ import { useNavigate } from "react-router-dom";
 
 function Search() {
 	const [input, setInput] = useState("");
+
+	const [error, setError] = useState(false);
+	const [errorMessage, setErrorMessage] = useState("");
+
 	const navigate = useNavigate();
 
 	const isValidZipCode = (zipCode) => /^\d{5}$/.test(zipCode);
+	const isAlphaNumeric = (string) => /^[A-Za-z0-9]+$/.test(string);
+
+	function inStateArray(string) {
+		const lowerStr = string.toLowerCase();
+		return stateNames.some((item) => item.toLowerCase() === lowerStr);
+	}
 
 	const stateNames = [
 		"Alabama",
@@ -63,7 +73,12 @@ function Search() {
 	const selectEndpoint = async (e: FormEvent) => {
 		e.preventDefault();
 
-		if (stateNames.includes(input)) {
+		if (!isAlphaNumeric(input)) {
+			setErrorMessage(
+				"You entered an invalid state, city, or 5 digit zip-code. Please try again."
+			);
+			setError(true);
+		} else if (inStateArray(input)) {
 			navigate(`/search/state/${input}`);
 		} else if (isValidZipCode(input)) {
 			navigate(`/search/postal/${input}`);
@@ -74,8 +89,22 @@ function Search() {
 
 	return (
 		<>
-			<div className="col-md-12 mb-4">
-				<span className="heading-title">Search</span>
+			<div className="col-md-8 mb-4">
+				{error && (
+					<div
+						className="alert alert-warning alert-dismissible fade show"
+						role="alert"
+					>
+						<strong>Oops!</strong> {errorMessage}
+						<button
+							type="button"
+							className="btn-close"
+							data-bs-dismiss="alert"
+							aria-label="Close"
+						/>
+					</div>
+				)}
+				<span className="heading-title">Search Breweries</span>
 				<div className="card">
 					<form action="" onSubmit={selectEndpoint}>
 						<div className="row">
@@ -87,6 +116,7 @@ function Search() {
 										value={input}
 										onChange={(e) => setInput(e.target.value)}
 										placeholder="Enter state, city, or 5 digit zip-code"
+										required
 									/>
 									<button type="submit" className="btn btn-primary">
 										Search <i className="bi bi-search"></i>

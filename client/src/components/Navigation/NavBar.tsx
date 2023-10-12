@@ -1,10 +1,13 @@
+import LoginModal from "../Authentication/LoginModal";
+import RegisterModal from "../Authentication/RegisterModal";
+
 function NavBar() {
 	return (
 		<>
 			<header>
 				<nav className="navbar navbar-expand-lg bg-body-tertiary">
 					<div className="container-fluid">
-						<a className="navbar-brand" href="#">
+						<a className="navbar-brand" href="/">
 							<b>Brewery Project</b>
 						</a>
 
@@ -41,13 +44,28 @@ function NavBar() {
 								</li>
 							</ul>
 							<div className="d-flex">
-								<button className="btn btn-outline-primary me-2">Login</button>
-								<button className="btn btn-outline-primary">Register</button>
+								<button
+									className="btn btn-outline-primary me-2"
+									data-bs-toggle="modal"
+									data-bs-target="#loginModal"
+								>
+									Login
+								</button>
+								<button
+									className="btn btn-outline-primary"
+									data-bs-toggle="modal"
+									data-bs-target="#registerModal"
+								>
+									Register
+								</button>
 							</div>
 						</div>
 					</div>
 				</nav>
 			</header>
+
+			<LoginModal />
+			<RegisterModal />
 		</>
 	);
 }
