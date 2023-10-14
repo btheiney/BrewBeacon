@@ -12,7 +12,7 @@ function Search() {
 	const navigate = useNavigate();
 
 	const isValidZipCode = (zipCode) => /^\d{5}$/.test(zipCode);
-	const isAlphaNumeric = (string) => /^[A-Za-z0-9]+$/.test(string);
+	const isAlphaNumeric = (string) => /^[A-Za-z0-9\s]+$/.test(string);
 
 	function inStateArray(string) {
 		const lowerStr = string.toLowerCase();
