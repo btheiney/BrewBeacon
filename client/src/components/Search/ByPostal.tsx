@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Rating } from "react-simple-star-rating";
+
+import BreweryCard from "../Cards/BreweryCard";
 
 function ByPostal() {
 	const { postal } = useParams();
@@ -30,37 +31,9 @@ function ByPostal() {
 					Breweries In {postal} ({postalData.length})
 				</span>
 				<div className="row">
-					{postalData.map((brewery, index) => (
-						<div key={index} className="col-3 mb-4">
-							<div className="card">
-								<img
-									className="card-image"
-									src={`https://maps.googleapis.com/maps/api/staticmap?center=${
-										brewery.address_1 +
-										", " +
-										brewery.postal +
-										" " +
-										brewery.state +
-										", " +
-										brewery.postal_code
-									}&zoom=18&size=400x400&key=${
-										import.meta.env.VITE_REACT_GOOGLE_MAPS_API_KEY
-									}&format=png`}
-								/>
-								<div className="location-name">{brewery.name}</div>
-								<Rating readonly="true" size="25" initialValue="3.5" />
-								<div className="heading mt-2">
-									{brewery.address_1 +
-										", " +
-										brewery.postal +
-										" " +
-										brewery.state +
-										", " +
-										brewery.postal_code}
-								</div>
-							</div>
-						</div>
-					))}
+					<div className="row">
+						<BreweryCard breweries={postalData} />
+					</div>
 				</div>
 			</div>
 		</>

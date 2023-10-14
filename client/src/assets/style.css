@@ -9,6 +9,10 @@ body {
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.card-title {
+	font-weight: 600;
+}
+
 .heading-title {
 	display: inline;
 	font-weight: 600;
@@ -102,4 +106,15 @@ body {
 
 .modal {
 	backdrop-filter: blur(10px);
+}
+
+.form-error {
+	color: red;
+	font-size: 0.9em;
+}
+
+.error-list {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
 }

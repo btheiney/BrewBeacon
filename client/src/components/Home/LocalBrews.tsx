@@ -6,13 +6,13 @@ function LocalBrews() {
 	const [localData, setLocalData] = useState([]);
 	const [postalCode, setPostalCode] = useState("Bethlehem");
 
-	const checkLocation = async () => {
-		if ("geolocation" in navigator) {
-			console.log("Available");
-		} else {
-			console.log("Not Available");
-		}
-	};
+	// const checkLocation = async () => {
+	// 	if ("geolocation" in navigator) {
+	// 		console.log("Available");
+	// 	} else {
+	// 		console.log("Not Available");
+	// 	}
+	// };
 
 	const getLocalBrews = async () => {
 		try {
@@ -26,7 +26,7 @@ function LocalBrews() {
 	};
 
 	useEffect(() => {
-		checkLocation();
+		// checkLocation();
 		getLocalBrews();
 	}, []);
 

@@ -1,6 +1,8 @@
 import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
+import BasicAlert from "../Alerts/BasicAlert";
+
 function Search() {
 	const [input, setInput] = useState("");
 
@@ -90,20 +92,7 @@ function Search() {
 	return (
 		<>
 			<div className="col-md-8 mb-4">
-				{error && (
-					<div
-						className="alert alert-warning alert-dismissible fade show"
-						role="alert"
-					>
-						<strong>Oops!</strong> {errorMessage}
-						<button
-							type="button"
-							className="btn-close"
-							data-bs-dismiss="alert"
-							aria-label="Close"
-						/>
-					</div>
-				)}
+				{error && <BasicAlert message={errorMessage} type="warning" />}
 				<span className="heading-title">Search Breweries</span>
 				<div className="card">
 					<form action="" onSubmit={selectEndpoint}>

@@ -43,6 +43,7 @@ function NavBar() {
 									</a>
 								</li>
 							</ul>
+
 							<div className="d-flex">
 								<button
 									className="btn btn-outline-primary me-2"
