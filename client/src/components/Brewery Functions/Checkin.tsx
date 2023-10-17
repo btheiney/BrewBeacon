@@ -1,12 +1,9 @@
-import { useState } from "react";
+import axios from "axios";
 
-function Checkin(breweryID: string, memberID: number) {
+function Checkin(breweryID: string) {
 	const handleCheckin = async () => {
 		try {
-			const response = await axios.post(`/api/brewery/checkin`, {
-				breweryID,
-				memberID,
-			});
+			const response = await axios.post(`/api/brewery/checkin`, breweryID);
 
 			if (response.data["success"]) {
 				console.log("success");
@@ -18,6 +15,7 @@ function Checkin(breweryID: string, memberID: number) {
 
 	return (
 		<>
+			{console.log(breweryID)}
 			<div className="d-grid gap-2 mt-3">
 				<button className="btn btn-primary" onClick={handleCheckin}>
 					Check In

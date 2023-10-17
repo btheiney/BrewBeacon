@@ -44,4 +44,9 @@ app.get(
 	member.getAuthenticatedMember
 );
 
+// Brewery Routes
+const brewery = require("./routes/BreweryRoutes");
+app.post("/api/brewery/checkin", auth.checkSession, brewery.checkIn);
+app.get("/api/brewery/:brewery_id/checkin_count", brewery.getCheckinCount);
+
 app.listen(3000, () => console.log("listening at http://localhost:" + 3000));
