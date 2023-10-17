@@ -32,7 +32,9 @@ function ByCity() {
 				</span>
 				<div className="row">
 					<div className="row">
-						<BreweryCard breweries={cityData} />
+						{cityData.map((brewery) => (
+							<BreweryCard brewery={brewery} />
+						))}
 					</div>
 				</div>
 			</div>

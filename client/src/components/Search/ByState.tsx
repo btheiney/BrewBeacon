@@ -31,7 +31,9 @@ function ByState() {
 					Breweries In {state} ({stateData.length})
 				</span>
 				<div className="row">
-					<BreweryCard breweries={stateData} />
+					{stateData.map((brewery) => (
+						<BreweryCard brewery={brewery} />
+					))}
 				</div>
 			</div>
 		</>

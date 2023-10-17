@@ -32,7 +32,9 @@ function ByPostal() {
 				</span>
 				<div className="row">
 					<div className="row">
-						<BreweryCard breweries={postalData} />
+						{postalData.map((brewery) => (
+							<BreweryCard brewery={brewery} />
+						))}
 					</div>
 				</div>
 			</div>

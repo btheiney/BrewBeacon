@@ -1,12 +1,17 @@
+:root {
+	font-family: "Nunito", sans-serif;
+	--theme-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
 body {
-	background-color: #eee;
+	background-color: #f9fafd;
 }
 
 .card {
 	background-color: #fff;
 	padding: 15px;
 	border: none;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	box-shadow: var(--theme-box-shadow);
 }
 
 .card-title {
@@ -16,8 +21,9 @@ body {
 .heading-title {
 	display: inline;
 	font-weight: 600;
-	font-size: 1rem;
+	font-size: 18px;
 	padding: 0.5em 0.75em;
+	color: #6c757d;
 	line-height: 1;
 	border-radius: 6px;
 	& + * {
@@ -117,4 +123,32 @@ body {
 	padding: 0;
 	margin: 0;
 	list-style-type: none;
+}
+
+.avatar-img {
+	height: 35px;
+	width: 35px;
+	border-radius: 100px;
+	margin-right: 10px;
+}
+
+.full_name {
+	font-weight: 600;
+	color: #6c757d;
+	font-size: 16px;
+}
+
+.username {
+	font-weight: 600;
+	color: #6c757d;
+	font-size: 14px;
+}
+
+.profile-box {
+	gap: 10px;
+}
+
+.navbar {
+	background-color: #fff;
+	box-shadow: var(--theme-box-shadow);
 }

@@ -1,7 +1,36 @@
 import LoginModal from "../Authentication/LoginModal";
 import RegisterModal from "../Authentication/RegisterModal";
+import { useMember } from "../../contexts/MemberContext";
+import ProfileBox from "./ProfileBox";
 
 function NavBar() {
+	const member = useMember();
+
+	const renderLoginButtons = () => {
+		if (!member.id) {
+			return (
+				<div className="d-flex">
+					<button
+						className="btn btn-outline-primary me-2"
+						data-bs-toggle="modal"
+						data-bs-target="#loginModal"
+					>
+						Login
+					</button>
+					<button
+						className="btn btn-outline-primary"
+						data-bs-toggle="modal"
+						data-bs-target="#registerModal"
+					>
+						Register
+					</button>
+				</div>
+			);
+		} else {
+			return <ProfileBox />;
+		}
+	};
+
 	return (
 		<>
 			<header>
@@ -44,29 +73,18 @@ function NavBar() {
 								</li>
 							</ul>
 
-							<div className="d-flex">
-								<button
-									className="btn btn-outline-primary me-2"
-									data-bs-toggle="modal"
-									data-bs-target="#loginModal"
-								>
-									Login
-								</button>
-								<button
-									className="btn btn-outline-primary"
-									data-bs-toggle="modal"
-									data-bs-target="#registerModal"
-								>
-									Register
-								</button>
-							</div>
+							{renderLoginButtons()}
 						</div>
 					</div>
 				</nav>
 			</header>
 
-			<LoginModal />
-			<RegisterModal />
+			{!member.id && (
+				<div>
+					<LoginModal />
+					<RegisterModal />
+				</div>
+			)}
 		</>
 	);
 }

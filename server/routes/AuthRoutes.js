@@ -4,48 +4,44 @@ const bcrypt = require("bcrypt");
 
 const loginMember = async (request, response) => {
 	const { email, password } = request.body;
-
 	const errors = [];
 
-	// Input Validation
-	if (!validator.isEmail(email)) {
-		errors.push("Invalid email. Please try again.");
+	if (!validator.isEmail(email) || !email) {
+		errors.push("Please provide a valid email address.");
+	}
+
+	if (!password || password.length === 0) {
+		errors.push("Please complete all login fields.");
 	}
 
 	if (errors.length > 0) {
-		return response.json({
-			success: false,
-			errors,
-		});
+		return response.json({ success: false, errors });
 	}
 
 	try {
-		// Hash the password
-		const passwordHash = await bcrypt.hash(password, 10);
-
-		// Insert member data into the database
 		const result = await database.query(
-			"SELECT password FROM members WHERE email = $1 LIMIT 1",
+			"SELECT id, password FROM members WHERE email = $1",
 			[email]
 		);
 
-		// Verify that passwords match.
-		if (result !== passwordHash) {
-			errors.push("The username or password you entered is incorrect");
+		if (
+			result.rows.length === 0 ||
+			!bcrypt.compareSync(password, result.rows[0].password)
+		) {
+			errors.push("The email or password you provided is incorrect.");
 		}
 
 		if (errors.length > 0) {
-			return response.json({
-				success: false,
-				errors,
-			});
+			return response.json({ success: false, errors });
 		}
 
-		return response.status(200).json({ success: true });
+		request.session.authenticated = true;
+		request.session.memberID = result.rows[0].id;
+		response.json({ success: true });
 	} catch (error) {
-		return response.status(500).json({
+		response.status(500).json({
 			success: false,
-			error: "An error occurred while registering account.",
+			error: "An error occurred while trying to authenticate.",
 		});
 	}
 };
@@ -118,7 +114,7 @@ const registerMember = async (request, response) => {
 
 	try {
 		// Hash the password
-		const passwordHash = await bcrypt.hash(password, 10);
+		const passwordHash = await bcrypt.hashSync(password, 10);
 		const timestamp = Math.floor(Date.now() / 1000);
 
 		// Insert member data into the database
@@ -138,12 +134,21 @@ const registerMember = async (request, response) => {
 	} catch (error) {
 		return response.status(500).json({
 			success: false,
-			error: "An error occurred while registering account. " + error.message,
+			error: "An error occurred while registering account.",
 		});
+	}
+};
+
+const checkSession = async (request, response, next) => {
+	if (request.session.authenticated === true && request.session.memberID) {
+		next();
+	} else {
+		response.json("not logged in.");
 	}
 };
 
 module.exports = {
 	loginMember,
 	registerMember,
+	checkSession,
 };
