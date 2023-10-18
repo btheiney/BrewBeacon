@@ -108,7 +108,7 @@ function Search() {
 										required
 									/>
 									<button type="submit" className="btn btn-primary">
-										Search <i className="bi bi-search"></i>
+										Search
 									</button>
 								</div>
 							</div>

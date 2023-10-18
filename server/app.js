@@ -1,4 +1,4 @@
-// application requirements.
+// application requirements / imports
 require("dotenv").config();
 const express = require("express"),
 	session = require("express-session"),
@@ -31,22 +31,12 @@ app.use(
 
 app.disable("x-powered-by");
 
-// Authentication Routes
-const auth = require("./routes/AuthRoutes");
-app.post("/api/auth/register", auth.registerMember);
-app.post("/api/auth/login", auth.loginMember);
+const authRoutes = require("./routes/AuthRoutes");
+const memberRoutes = require("./routes/MemberRoutes");
+const breweryRoutes = require("./routes/BreweryRoutes");
 
-// Member Data Routes
-const member = require("./routes/MemberRoutes");
-app.get(
-	"/api/members/current",
-	auth.checkSession,
-	member.getAuthenticatedMember
-);
-
-// Brewery Routes
-const brewery = require("./routes/BreweryRoutes");
-app.post("/api/brewery/checkin", auth.checkSession, brewery.checkIn);
-app.get("/api/brewery/:brewery_id/checkin_count", brewery.getCheckinCount);
+app.use("/api/auth", authRoutes);
+app.use("/api/member", memberRoutes);
+app.use("/api/brewery", breweryRoutes);
 
 app.listen(3000, () => console.log("listening at http://localhost:" + 3000));

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useMember } from "../../contexts/MemberContext";
-import Checkin from "../Brewery Functions/Checkin";
 import axios from "axios";
 
 function BreweryCard({ brewery }) {
@@ -38,13 +37,14 @@ function BreweryCard({ brewery }) {
 						src={getMapURL(brewery)}
 						alt={`Map for ${brewery.name}`}
 					/>
-					<div className="location-name">{brewery.name}</div>
-					<div className="heading mt-2">{checkinCount} Check-Ins</div>
-					<div className="heading mt-2">
-						{`${brewery.address_1}, ${brewery.city} ${brewery.state}, ${brewery.postal_code}`}
+					<span className="location-name">{brewery.name}</span>
+					<div>
+						<span className="badge bg-secondary">{brewery.brewery_type}</span>
 					</div>
-
-					{member.id && <Checkin breweryID={brewery.id} />}
+					<span className="heading mt-2">{checkinCount} Check-Ins</span>
+					<span className="heading mt-2">
+						{`${brewery.address_1}, ${brewery.city} ${brewery.state}, ${brewery.postal_code}`}
+					</span>
 				</div>
 			</div>
 		</>

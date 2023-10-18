@@ -12,7 +12,7 @@ export function MemberProvider({ children }) {
 
 	const getMemberData = async () => {
 		try {
-			const response = await axios.get(`/api/members/current`, {
+			const response = await axios.get(`/api/member/current`, {
 				withCredentials: true,
 			});
 

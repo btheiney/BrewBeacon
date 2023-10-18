@@ -1,4 +1,4 @@
-import LocalBrews from "./LocalBrews";
+import LocalBrews from "../Brewery Functions/LocalBrews";
 
 function HomePage() {
 	return (

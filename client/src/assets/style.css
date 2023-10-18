@@ -14,27 +14,16 @@ body {
 	box-shadow: var(--theme-box-shadow);
 }
 
-.card-title {
+.card-title,
+.heading-title,
+.heading-sub {
 	font-weight: 600;
 }
 
-.heading-title {
-	display: inline;
-	font-weight: 600;
-	font-size: 18px;
-	padding: 0.5em 0.75em;
-	color: #6c757d;
-	line-height: 1;
-	border-radius: 6px;
-	& + * {
-		margin-top: 1rem;
-	}
-}
-
+.heading-title,
 .heading-sub {
 	display: inline;
-	font-weight: 600;
-	font-size: 0.7rem;
+	font-size: 18px;
 	padding: 0.5em 0.75em;
 	line-height: 1;
 	border-radius: 6px;
@@ -45,69 +34,71 @@ body {
 
 .input-box {
 	position: relative;
+
+	i {
+		position: absolute;
+		right: 13px;
+		top: 15px;
+		color: #ced4da;
+	}
 }
 
-.input-box i {
-	position: absolute;
-	right: 13px;
-	top: 15px;
-	color: #ced4da;
+.input-group-text {
+	background-color: #eeeeee69;
 }
 
 .form-control {
 	height: 50px;
 	background-color: #eeeeee69;
-}
-
-.form-control:focus {
-	background-color: #eeeeee69;
-	box-shadow: none;
-	border-color: #eee;
+	&:focus {
+		background-color: #eeeeee69;
+		box-shadow: none;
+		border-color: #eee;
+	}
 }
 
 .navbar {
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	box-shadow: var(--theme-box-shadow);
 }
 
 .card-image:hover {
 	transform: scale(0.98);
 }
 
-.location-name {
-	text-transform: uppercase;
-	font-size: 1em;
+.location-name,
+.location-type,
+.heading,
+.name,
+.author,
+.full_name,
+.username {
 	font-weight: 600;
-	color: rgb(63, 121, 230);
-	padding: 10px 7px 0;
-}
-
-.location-name:hover {
-	cursor: pointer;
-}
-
-.heading {
-	font-weight: 600;
-	color: rgb(88, 87, 87);
 	padding: 7px;
 }
 
-.heading:hover {
-	cursor: pointer;
+.location-name {
+	text-transform: uppercase;
+	font-size: 1em;
+	color: rgb(63, 121, 230);
+	padding: 10px 7px 0;
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.heading,
+.name,
+.full_name {
+	color: rgb(88, 87, 87);
+	&:hover {
+		cursor: pointer;
+	}
 }
 
 .author {
 	color: gray;
-	font-weight: 400;
 	font-size: 11px;
 	padding-top: 20px;
-}
-
-.name {
-	font-weight: 600;
-}
-
-.name:hover {
-	cursor: pointer;
 }
 
 .modal {
@@ -132,18 +123,6 @@ body {
 	margin-right: 10px;
 }
 
-.full_name {
-	font-weight: 600;
-	color: #6c757d;
-	font-size: 16px;
-}
-
-.username {
-	font-weight: 600;
-	color: #6c757d;
-	font-size: 14px;
-}
-
 .profile-box {
 	gap: 10px;
 }
@@ -151,4 +130,8 @@ body {
 .navbar {
 	background-color: #fff;
 	box-shadow: var(--theme-box-shadow);
+}
+
+.footer-bottom {
+	background-color: rgba(0, 0, 0, 0.05);
 }

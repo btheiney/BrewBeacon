@@ -6,7 +6,7 @@ function Checkin(breweryID: string) {
 			const response = await axios.post(`/api/brewery/checkin`, breweryID);
 
 			if (response.data["success"]) {
-				console.log("success");
+				window.location.reload(false);
 			}
 		} catch (error) {
 			console.error("Error occured while checking in.");
@@ -18,7 +18,7 @@ function Checkin(breweryID: string) {
 			{console.log(breweryID)}
 			<div className="d-grid gap-2 mt-3">
 				<button className="btn btn-primary" onClick={handleCheckin}>
-					Check In
+					<i className="bi bi-geo-alt-fill"></i> Check In
 				</button>
 			</div>
 		</>

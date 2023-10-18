@@ -1,6 +1,8 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 
+// stylesheets and icons
 import "./assets/style.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(<App />);

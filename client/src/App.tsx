@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from "./components/Navigation/NavBar";
+import Footer from "./components/Footer/Footer";
 import Search from "./components/Search/Search";
 
 import { MemberProvider } from "./contexts/MemberContext";
@@ -30,6 +31,7 @@ function App() {
 						</Routes>
 					</div>
 				</div>
+				<Footer />
 			</MemberProvider>
 		</Router>
 	);
